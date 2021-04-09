@@ -1,0 +1,1 @@
+Script for compiling qt version 5.15.2 on your raspberry pi 4 or p400
