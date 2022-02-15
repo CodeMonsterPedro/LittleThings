@@ -24,4 +24,4 @@ goal
 write("Stepen chisla= "),pow(2,8),nl
 write("Summa nechentih = "),oddSumm(11,S),nl.
 write("Nod: "),nod(8,12,R),nl.
-Та зачем, я прям тут поменяю
+
