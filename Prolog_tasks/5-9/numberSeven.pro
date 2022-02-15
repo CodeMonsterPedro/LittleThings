@@ -1,0 +1,22 @@
+domains
+	list=integer*
+predicates
+	addn(list,list,integer,list)
+	conc(list,list,list)
+clauses
+	addn([],S2,_,S2):-
+		!.
+	addn(S1,S2,0,S3):-
+		conc(S1,S2,S3),
+		!.
+	addn(S1,[H|T],N,S3):-
+		Y=N-1,
+		addn(S1,T,Y,S4),
+		conc([H],S4,S3).
+
+	conc([],L2,L2):-
+		!.
+	conc([H|T],L,[H|T1]):-
+		conc(T,L,T1).
+goal
+ addn([4,8],[1,2,3],1,S).
