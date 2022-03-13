@@ -5,11 +5,11 @@
 4.2 TODO
 4.3 done
 4.4 TODO
-5. TODO
-6. TODO
-7. TODO
-8. TODO
-9. TODO
+5. TODO (DONE by fact)
+6. TODO (DONE by fact. customization required)
+7. TODO (DONE by fact)
+8. TODO (DONE by fact. customization required)
+9. TODO (DONE by fact)
 10. TODO
 11. TODO
 12. TODO
