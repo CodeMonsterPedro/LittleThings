@@ -22,7 +22,7 @@ clauses
 	dl(N,[_|T]):-dl(N1,T),N=N1+1.
 	sublist(M,N,L,Newl):-M1=M-1,N1=N-M+1,append(L1,L2,L),dl(M1,L1),append(Newl,_,L2),dl(N1,Newl).
 goal
-	first_sublist([10,9,8,7,6],[8,7],N).
+	first_sublist([10,9,8,7,6],[8,7],N)./*6*/
 	/*ins_in_pos(2,[10,9,8,7,6],1,X).*/
-	/*sublist(2,5,[1,-4,3,660,43,-2,19,-50,16,19,45],Newlist).*/
+	/*sublist(2,5,[1,-4,3,660,43,-2,19,-50,16,19,45],Newlist).*//*8*/
 	
