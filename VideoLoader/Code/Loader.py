@@ -7,7 +7,7 @@ class Loader:
         self.urls = []
         self.qualityId = []
         self.filetypes = []
-        self.savePath = '~/Videos'
+        self.savePath = 'Videos'
 
     def downloadStream(self, url, streamId):
         start = datetime.now()

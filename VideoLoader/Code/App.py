@@ -1,14 +1,14 @@
 import sys
 import os
-from PySide2.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QTableWidget
+from PySide2.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QTableWidget, QFileDialog
 from UIs.mainwindow import Ui_MainWindow
 import requests
 from Loader import Loader
 
+
 '''
 TOFIX
 
-saveplace
 file type change 
 string in table full size
 fix status bar issue
@@ -27,7 +27,7 @@ class Base(QMainWindow):
         QMainWindow.__init__(self)
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.ui.ln_path.setText('~/Videos')
+        self.ui.ln_path.setText('Videos')
         self.headers = ['url', 'quality', 'filetype']
         self.ui.tbw_data.setColumnCount(len(self.headers))
         self.ui.tbw_data.setHorizontalHeaderLabels(self.headers)
@@ -40,7 +40,8 @@ class Base(QMainWindow):
         self.ui.btn_remove.setEnabled(False)
         self.ui.spb_id.setEnabled(False)
         self.ui.btn_set_url.clicked.connect(self.setUrl)
-        self.ui.btn_set_path.clicked.connect(self.setSavePath)
+        self.ui.btn_set_path.clicked.connect(self.selectSavePath)
+        self.ui.ln_path.editingFinished.connect(self.setSavePath)
         self.ui.btn_add.clicked.connect(self.addUrl)
         self.ui.btn_remove.clicked.connect(self.removeUrl)
         self.ui.btn_start.clicked.connect(self.startDownload)
@@ -85,6 +86,11 @@ class Base(QMainWindow):
         self.ui.ln_url.setText('')
         self.ui.btn_add.setEnabled(False)
 
+    def selectSavePath(self):
+        dialog = QFileDialog()
+        url = dialog.getExistingDirectoryUrl()
+        self.savePath(url.path())
+
     def setSavePath(self):
         path = self.ui.ln_path.text()
         if self.checkPath(path):
@@ -95,6 +101,10 @@ class Base(QMainWindow):
 
     def checkPath(self, path):
         return os.path.exists(path)
+
+    def savePath(self, path):
+        self.loader.savePath = str(path)
+        self.ui.ln_path.setText(path)
 
     def setUrl(self):
         url = self.ui.ln_url.text()
