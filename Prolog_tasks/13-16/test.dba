@@ -1,0 +1,4 @@
+cond(1,"Kashel")
+cond(2,"Temperatura 37.7")
+rule("Prostuda",[2,1])
+rule("Kor",[1])
