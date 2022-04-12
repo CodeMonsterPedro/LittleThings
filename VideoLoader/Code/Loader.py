@@ -1,3 +1,4 @@
+from re import S
 from pytube import YouTube
 from datetime import datetime
 
@@ -14,7 +15,7 @@ class Loader:
         yt = YouTube(url)
         streams = yt.streams
         item = streams[streamId]
-        print("start download a stream {} with: \n".format(streamId))
+        print("\nstart download a stream {} with:".format(streamId))
         if item.type == "video":
             print("resolution: {}\nfps: {}\nvideo_codec: {}\n".format(item.resolution, item.fps, item.video_codec))
             streams[streamId].download(output_path=self.savePath, filename_prefix="{}_{}_{}_".format(item.resolution, item.fps, streamId))
@@ -27,10 +28,6 @@ class Loader:
     def getQualityList(self, url):
         yt = YouTube(url)
         streams = yt.streams
-        print("\nFor source: {}".format(yt.title))
-        print("available list of quality: ")
-        for row in streams:
-            print(row)
         result = []
         for item in streams:
             if item.type == "video":
@@ -45,3 +42,20 @@ class Loader:
 
     def startDownload(self, i):
         self.downloadStream(self.urls[i], self.qualityId[i])
+
+    def getStreamInfo(self):
+        url = self.urls[-1]
+        qualityText = self.getQualityList(url)[self.qualityId[-1]]
+        filetype = qualityText.split(":")[-1]
+        yt = YouTube(url)
+        streams = yt.streams
+        item = streams[self.qualityId[-1]]
+        size = item.filesize / 1000000.0
+        if size > 1000:
+            size = size / 1000.0
+            size = float(int(size * 10)) / 10.0
+            size = "{} GB".format(size)
+        else:
+            size = float(int(size * 10)) / 10.0
+            size = "{} MB".format(size)
+        return (url, qualityText, filetype, size)

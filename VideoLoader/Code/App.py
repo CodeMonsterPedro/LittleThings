@@ -28,7 +28,7 @@ class Base(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.ui.ln_path.setText('Videos')
-        self.headers = ['url', 'quality', 'filetype']
+        self.headers = ['url', 'quality', 'filetype', "size"]
         self.ui.tbw_data.setColumnCount(len(self.headers))
         self.ui.tbw_data.setHorizontalHeaderLabels(self.headers)
         self.ui.tbw_data.setColumnWidth(0, 600)
@@ -49,15 +49,16 @@ class Base(QMainWindow):
         self.loader = Loader()
         self.ui.statusBar.showMessage("ready")
 
+    def __del__(self):
+        pass
+
 # UIs methods 
 
     def startDownload(self):
-        self.ui.statusBar.showMessage("download started")
         queueSize = self.ui.tbw_data.rowCount()
         for i in range(queueSize):
             self.ui.statusBar.showMessage("downloading file {} of {}".format(i, queueSize))
             self.loader.startDownload(i)
-        self.ui.statusBar.showMessage("download finished")
 
     def clearTable(self):
         for i in range(self.ui.tbw_data.rowCount(), -1, -1):
@@ -69,18 +70,14 @@ class Base(QMainWindow):
 
     def addUrl(self):
         url = self.ui.ln_url.text()
-        qualityText = self.ui.cb_quality.currentText()
         qualityId = self.ui.cb_quality.currentIndex()
-        filetype = qualityText.split("_")
-        filetype = filetype[-1].split(":")
-        filetype = filetype[-1]
         if self.ui.tbw_data.rowCount() == 0:
             self.ui.btn_start.setEnabled(True)
             self.ui.btn_clean_all.setEnabled(True)
             self.ui.btn_remove.setEnabled(True)
             self.ui.spb_id.setEnabled(True)
         self.loader.addTaskRow([url, qualityId])
-        self.addRow([url, qualityText, filetype])
+        self.addRow(self.loader.getStreamInfo())
         self.ui.cb_quality.clear()
         self.ui.cb_quality.setEnabled(False)
         self.ui.ln_url.setText('')
@@ -136,9 +133,8 @@ class Base(QMainWindow):
     def addRow(self, row):
         index = self.ui.tbw_data.rowCount()
         self.ui.tbw_data.insertRow(index)
-        self.ui.tbw_data.setItem(index, 0, QTableWidgetItem(str(row[0])))
-        self.ui.tbw_data.setItem(index, 1, QTableWidgetItem(str(row[1])))
-        self.ui.tbw_data.setItem(index, 2, QTableWidgetItem(str(row[2])))
+        for i in range(len(self.headers)):
+            self.ui.tbw_data.setItem(index, i, QTableWidgetItem(str(row[i])))
         self.ui.spb_id.setMaximum(self.ui.tbw_data.rowCount())
 
 if __name__ == "__main__":
