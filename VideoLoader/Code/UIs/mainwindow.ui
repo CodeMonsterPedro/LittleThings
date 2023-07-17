@@ -6,45 +6,22 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>814</width>
-    <height>736</height>
+    <width>809</width>
+    <height>222</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QTableWidget" name="tbw_data">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>200</y>
-      <width>781</width>
-      <height>361</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QComboBox" name="cb_quality">
     <property name="geometry">
      <rect>
       <x>10</x>
       <y>110</y>
-      <width>661</width>
+      <width>581</width>
       <height>31</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_add">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>110</y>
-      <width>111</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Add</string>
     </property>
    </widget>
    <widget class="QPushButton" name="btn_set_url">
@@ -76,27 +53,14 @@
    <widget class="QPushButton" name="btn_start">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>590</y>
+      <x>600</x>
+      <y>110</y>
       <width>191</width>
       <height>71</height>
      </rect>
     </property>
     <property name="text">
      <string>Start download</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_clean_all">
-    <property name="geometry">
-     <rect>
-      <x>680</x>
-      <y>150</y>
-      <width>111</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Clean all</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="ln_path">
@@ -125,27 +89,14 @@
      <string>Save path</string>
     </property>
    </widget>
-   <widget class="QSpinBox" name="spb_id">
+   <widget class="QComboBox" name="cb_audio">
     <property name="geometry">
      <rect>
-      <x>490</x>
+      <x>10</x>
       <y>150</y>
-      <width>61</width>
+      <width>581</width>
       <height>31</height>
      </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="btn_remove">
-    <property name="geometry">
-     <rect>
-      <x>560</x>
-      <y>150</y>
-      <width>111</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Remove</string>
     </property>
    </widget>
   </widget>
